@@ -1,18 +1,28 @@
 package br.com.alura.screenmatch;
 
+<<<<<<< HEAD
+import br.com.alura.screenmatch.service.ConsumoApi;
+=======
 import br.com.alura.screenmatch.Principal.Principal;
 import br.com.alura.screenmatch.model.DadosEpisodio;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
+>>>>>>> 46eaa4838beafbabd707fce0c0155eb2d6932a96
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+<<<<<<< HEAD
+/* Para que essa aplicação rode em linha de comando, o método principal precisa implementar
+a classe CommandLineRunner, como realizado abaixo
+*/
+=======
 import java.util.ArrayList;
 import java.util.List;
 
+>>>>>>> 46eaa4838beafbabd707fce0c0155eb2d6932a96
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
 
@@ -22,6 +32,11 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+<<<<<<< HEAD
+		var consumoApi = new ConsumoApi();
+		var json = consumoApi.obterDados("https://www.omdbapi.com/?t=gilmore+girls&apikey=9613a928");
+		System.out.println(json);
+=======
 		Principal principal = new Principal();
 		principal.exibeMenu();
 
@@ -49,5 +64,6 @@ public class ScreenmatchApplication implements CommandLineRunner {
 		}*/
 
 
+>>>>>>> 46eaa4838beafbabd707fce0c0155eb2d6932a96
 	}
 }
