@@ -5,13 +5,12 @@ import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.service.ConsumoApi;
+import br.com.alura.screenmatch.service.ConsumoGPT;
 import br.com.alura.screenmatch.service.ConverteDados;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Principal {
@@ -27,7 +26,6 @@ public class Principal {
 
         while (opcao != 0) {
             String menu = """
-                
                 1 - Buscar séries
                 2 - Buscar episódios
                 3 - Listar séries buscadas
@@ -60,16 +58,25 @@ public class Principal {
     }
 
     private void listarSeriesBuscadas() {
-        dadosSeries.forEach(System.out::println);
+        ConsumoGPT gpt = new ConsumoGPT();
+
+        List<Serie> series = new ArrayList<>();
+
+        series = dadosSeries.stream()
+                .map(Serie::new)
+                .collect(Collectors.toList());
+
+        series.forEach(s -> s.setSinopse(gpt.obterTraducao(s.getSinopse())));
+
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
     }
 
     private void buscarSerieWeb() {
         DadosSerie dadosSerie = getDadosSerie();
         dadosSeries.add(dadosSerie);
-        //System.out.println(dadosSerie);
-
-        Serie serie = new Serie(dadosSerie);
-        System.out.println(serie);
+        System.out.println(dadosSerie);
     }
 
     private void buscarEpisodiosWeb() {
