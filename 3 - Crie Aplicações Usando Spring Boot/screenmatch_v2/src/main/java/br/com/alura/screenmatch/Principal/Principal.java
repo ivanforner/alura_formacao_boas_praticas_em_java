@@ -1,14 +1,11 @@
 package br.com.alura.screenmatch.Principal;
 
-import br.com.alura.screenmatch.model.DadosEpisodio;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.service.ConsumoApi;
-import br.com.alura.screenmatch.service.ConsumoGPT;
 import br.com.alura.screenmatch.service.ConverteDados;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -58,15 +55,11 @@ public class Principal {
     }
 
     private void listarSeriesBuscadas() {
-        ConsumoGPT gpt = new ConsumoGPT();
-
-        List<Serie> series = new ArrayList<>();
+        List<Serie> series;
 
         series = dadosSeries.stream()
                 .map(Serie::new)
                 .collect(Collectors.toList());
-
-        series.forEach(s -> s.setSinopse(gpt.obterTraducao(s.getSinopse())));
 
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
