@@ -4,23 +4,16 @@ import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.completion.chat.ChatMessageRole;
 import com.theokanning.openai.service.OpenAiService;
-<<<<<<< HEAD
 import io.github.cdimascio.dotenv.Dotenv;
-=======
->>>>>>> 4e2120da849ba5571f345a8b91260987fc156b01
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConsumoGPT {
     public static String obterTraducao(String texto) {
-<<<<<<< HEAD
         Dotenv dotenv = Dotenv.load();
 
         OpenAiService service = new OpenAiService(dotenv.get("OPENAI_APIKEY"));
-=======
-        OpenAiService service = new OpenAiService("");
->>>>>>> 4e2120da849ba5571f345a8b91260987fc156b01
 
         final List<ChatMessage> messages = new ArrayList<>();
 
