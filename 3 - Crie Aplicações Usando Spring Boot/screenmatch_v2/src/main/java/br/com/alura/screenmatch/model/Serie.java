@@ -58,7 +58,6 @@ public class Serie {
                 ", atores='" + atores + '\'' +
                 ", Poster='" + Poster + '\'' +
                 ", sinopse='" + sinopse + '\'';
-<<<<<<< HEAD
     }
 
     public long getId() {
@@ -75,8 +74,6 @@ public class Serie {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-=======
->>>>>>> 4e2120da849ba5571f345a8b91260987fc156b01
     }
 
     public int getTotalTemporadas() {
