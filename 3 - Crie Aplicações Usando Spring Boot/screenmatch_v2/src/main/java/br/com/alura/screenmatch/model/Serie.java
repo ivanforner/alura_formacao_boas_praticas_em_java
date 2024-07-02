@@ -1,16 +1,17 @@
 package br.com.alura.screenmatch.model;
 
 import br.com.alura.screenmatch.service.ConsumoGPT;
-import com.fasterxml.jackson.annotation.JsonAlias;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,10 @@ public class Serie {
     private String atores;
     private String Poster;
     private String sinopse;
-    @Transient
+
+    // @Transient
     // @Transient é uma anotação que a JPA ignora o atributo
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
 
     public Serie() {}
@@ -57,7 +60,17 @@ public class Serie {
                 ", avaliacao=" + avaliacao +
                 ", atores='" + atores + '\'' +
                 ", Poster='" + Poster + '\'' +
-                ", sinopse='" + sinopse + '\'';
+                ", sinopse='" + sinopse + '\'' +
+                ", episodios= '" + episodios + '\'';
+    }
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this));
+        this.episodios = episodios;
     }
 
     public long getId() {

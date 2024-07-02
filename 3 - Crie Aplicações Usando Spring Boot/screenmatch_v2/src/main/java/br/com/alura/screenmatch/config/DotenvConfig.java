@@ -10,9 +10,9 @@ public class DotenvConfig {
     public void init() {
         Dotenv dotenv = Dotenv.load();
 
-        dotenv.entries().forEach(e -> {
-            System.setProperty(e.getKey(), e.getValue());
-            System.out.println(e.getKey());
-        });
+//        dotenv.entries().forEach(e -> {
+//            System.setProperty(e.getKey(), e.getValue());
+//            System.out.println(e.getKey());
+//        });
     }
 }
