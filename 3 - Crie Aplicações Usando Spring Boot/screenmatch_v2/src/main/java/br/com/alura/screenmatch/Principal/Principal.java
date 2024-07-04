@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.Principal;
 
+import br.com.alura.screenmatch.model.Categoria;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.model.Episodio;
@@ -37,6 +38,8 @@ public class Principal {
                 4 - Buscar séries por título
                 5 - Buscar séries por ator
                 6 - Buscar Top 5 Séries
+                7 - Buscar series por categoria
+                8 - Buscar series por temporadas
                 
                 0 - Sair
                 """;
@@ -69,6 +72,14 @@ public class Principal {
 
                 case 6:
                     buscarTop5Series();
+                    break;
+
+                case 7:
+                    buscarSeriesPorCategoria();
+                    break;
+
+                case 8:
+                    buscarSeriesPorTemporadas();
                     break;
 
                 default:
@@ -173,5 +184,27 @@ public class Principal {
         seriesTop.forEach(
                 s -> System.out.printf("Título: %s, avaliação %s\n", s.getTitulo(), s.getAvaliacao())
         );
+    }
+
+    private void buscarSeriesPorCategoria() {
+        System.out.println("Qual categoria?");
+        var categoriaUsuario = scanner.nextLine();
+        Categoria categoria = Categoria.fromStringPortugues(categoriaUsuario);
+        List<Serie> seriesPorCategoria = repository.findByGenero(categoria);
+        seriesPorCategoria.forEach(System.out::println);
+    }
+
+    private void buscarSeriesPorTemporadas() {
+        System.out.println("Até quantas temporadas? ");
+        Integer totalTemporadas = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Avaliações a partir de qual valor? ");
+        double avaliacao = scanner.nextDouble();
+
+        List<Serie> seriesPorTemporadas = repository
+                .findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(totalTemporadas, avaliacao);
+
+        seriesPorTemporadas.forEach(System.out::println);
     }
 }

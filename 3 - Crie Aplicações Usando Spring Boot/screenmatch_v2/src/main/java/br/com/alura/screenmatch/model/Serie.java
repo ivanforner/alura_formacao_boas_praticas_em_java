@@ -26,7 +26,7 @@ public class Serie {
 
     @Column(unique = true)
     private String titulo;
-    private int totalTemporadas;
+    private Integer totalTemporadas;
     private double avaliacao;
 
     // Aqui declaramos genero como um enum
